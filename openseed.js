@@ -1,8 +1,3 @@
-################## 
-OpenSeed.js
-author: Bflanagin
-##################
-
 
 function oseed_auth(name, passphrase) {
 
