@@ -193,7 +193,7 @@ function get_profile(account,devPub,appPub) {
     //http.send('msg='+simp_crypt(devId,postdata))
     http.send('msg='+postdata)
 
-    if (raw.length > 10) {
+    if (raw) {
         return raw
     } else {
         return '{"profile":"none"}'
