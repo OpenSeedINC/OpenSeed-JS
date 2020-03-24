@@ -184,7 +184,7 @@ function get_profile(account,devPub,appPub,docid) {
             } else {
                 raw = http.responseText
                 //return raw
-		document.getElementById(docid).innerHTML = raw;
+		document.getElementById(docid).innerHTML = raw.decodeURI();
             }
         }
     }
@@ -196,7 +196,7 @@ function get_profile(account,devPub,appPub,docid) {
 
     if (raw) {
         //return raw
-	document.getElementById(docid).innerHTML = raw;
+	document.getElementById(docid).innerHTML = raw.decodeURI();
     } else {
         document.getElementById(docid).innerHTML = '{"profile":"none"}'
     }
