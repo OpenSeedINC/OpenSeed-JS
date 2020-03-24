@@ -168,7 +168,7 @@ function get_openseed_connections(account) {
     }
 }
 
-function get_profile(account) {
+function get_profile(account,devPub,appPub) {
 
     var http = new XMLHttpRequest()
     var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"user_profile","username":"' + account+'"}'
