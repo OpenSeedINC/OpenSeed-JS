@@ -168,7 +168,7 @@ function get_openseed_connections(account) {
     }
 }
 
-function get_profile(account,devPub,appPub) {
+function get_profile(account,devPub,appPub,docid) {
 
     var http = new XMLHttpRequest()
     var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"user_profile","username":"' + account+'"}'
@@ -183,7 +183,8 @@ function get_profile(account,devPub,appPub) {
                 console.log("Incorrect AppID")
             } else {
                 raw = http.responseText
-                return raw
+                //return raw
+		document.getElementById(docid).innerHTML = raw;
             }
         }
     }
@@ -194,9 +195,10 @@ function get_profile(account,devPub,appPub) {
     http.send('msg='+postdata)
 
     if (raw) {
-        return raw
+        //return raw
+	document.getElementById(docid).innerHTML = raw;
     } else {
-        return '{"profile":"none"}'
+        document.getElementById(docid).innerHTML = '{"profile":"none"}'
     }
 }
 
