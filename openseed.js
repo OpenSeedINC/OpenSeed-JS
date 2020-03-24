@@ -183,7 +183,7 @@ function get_profile(account,devPub,appPub) {
                 console.log("Incorrect AppID")
             } else {
                 raw = http.responseText
-                //return raw
+                return raw
             }
         }
     }
