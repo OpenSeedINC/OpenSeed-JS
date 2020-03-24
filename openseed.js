@@ -188,9 +188,9 @@ function get_profile(account,devPub,appPub) {
         }
     }
 
-    http.open('POST', url.trim(), false)
+    http.open('POST', url.trim(), true)
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-    http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
+    http.send('msg='+simp_crypt(devId,postdata))
 
     if (raw.length > 10) {
         return raw
