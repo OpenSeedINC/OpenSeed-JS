@@ -217,7 +217,7 @@ function get_steem_profile(account) {
         }
     }
 
-    http.open('POST', url.trim(), false)
+    http.open('POST', url.trim(), true)
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
     http.send('msg={"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"profile_small","steem":"' + account+'"}')
 
