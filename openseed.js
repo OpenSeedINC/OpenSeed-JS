@@ -184,7 +184,7 @@ function get_profile(account,devPub,appPub,docid) {
             } else {
                 raw = http.responseText
                 //return raw
-		document.getElementById(docid).innerHTML = decodeURI(decodeURI(raw));
+		document.getElementById(docid).innerHTML = decodeURI(raw).replace(/%2C/g,",").replace(/%3A/g,":");
             }
         }
     }
@@ -196,7 +196,7 @@ function get_profile(account,devPub,appPub,docid) {
 
     if (raw) {
         //return raw
-	document.getElementById(docid).innerHTML = decodeURI(decodeURI(raw));
+	document.getElementById(docid).innerHTML = decodeURI(raw).replace(/%2C/g,",").replace(/%3A/g,":");
     } else {
         document.getElementById(docid).innerHTML = '{"profile":"none"}'
     }
