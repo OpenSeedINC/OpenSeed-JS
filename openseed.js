@@ -1,6 +1,6 @@
 
-var devPub = ""
-var appPub = ""
+var devPub = "";
+var appPub = "";
 function oseed_auth(name,passphrase,devPub,appPub,docid) {
 
     var http = new XMLHttpRequest()
