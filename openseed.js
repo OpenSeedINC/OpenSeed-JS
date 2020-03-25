@@ -117,10 +117,10 @@ function get_history(account,apprange,count,docid) {
 
 }
 
-function get_all_music(start,count,docid) {
+function get_tracks(start,count,docid) {
 
 	var http = new XMLHttpRequest()
-        var postdata = '{"devPub":"'+devPub+'","appPub":"'+ appPub +'","act":"getAllTracks","start":"'+start+'","count":"'+count+'"}'
+        var postdata = '{"devPub":"'+devPub+'","appPub":"'+ appPub +'","act":"getTracks","start":"'+start+'","count":"'+count+'"}'
         var url = "https://api.openseed.solutions/testing/"
         var raw
         http.onreadystatechange = function () {
