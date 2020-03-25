@@ -143,8 +143,8 @@ function get_openseed_connections(account,docid) {
                     console.log("Incorrect AppID")
                 } else {
                     raw = http.responseText
-                    var data = JSON.parse(raw.trim())["connections"]
-                    document.getElementById(docid).innerHTML = data
+                    //var data = JSON.parse(raw.trim())["connections"]
+                    document.getElementById(docid).innerHTML = raw
                 }
             }
         }
