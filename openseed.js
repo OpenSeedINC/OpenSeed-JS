@@ -1,7 +1,21 @@
 
 var devPub = "";
 var appPub = "";
-function oseed_auth(name,passphrase,devPub,appPub,docid) {
+
+function set_id(dev,app) {
+	devPub = dev;
+	appPub = app;
+}
+
+function get_id(idtype) {
+	if(idtype == "dev") {
+		return devPub;
+	} else {
+		return appPub;
+	}
+}
+
+function oseed_auth(name,passphrase,docid) {
 
     var http = new XMLHttpRequest()
     var postdata = '{"act":"accountcheck","devPub":"' + devPub + '","appPub":"' + appPub + '","username":"'+ name +'","passphrase":"'+ passphrase +'"}'
@@ -35,7 +49,7 @@ function oseed_auth(name,passphrase,devPub,appPub,docid) {
     http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
 }
 
-function save_user(userid,name,passphrase,devPub,appPub,docid) {
+function save_user(userid,name,passphrase,docid) {
     window.userid = userid
     profile_steemName = name
     window.username = name
@@ -75,7 +89,7 @@ function heartbeat() {
     http.send('msg={"devPub":"' + devPub + '","appPub":"' + appPub + '","userid":"' + userid+'"}')
 }
 
-function checkcreds(field,info,devPub,appPub,docid) {
+function checkcreds(field,info,docid) {
 
     var http = new XMLHttpRequest()
     var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","type":"' + field + '","info":"' + info+'"}'
@@ -180,7 +194,7 @@ function get_profile(account,docid) {
     }
 }
 
-function get_steem_profile(account,devPub,appPub,docid) {
+function get_steem_profile(account,docid) {
     var http = new XMLHttpRequest()
     var url = "https://api.openseed.solutions/testing/"
     var raw
@@ -208,7 +222,7 @@ function get_steem_profile(account,devPub,appPub,docid) {
     }
 }
 
-function create_user(username,email,passphrase,steemname,devPub,appPub,docid) {
+function create_user(username,email,passphrase,steemname,docid) {
     var http = new XMLHttpRequest()
     var url = "https://api.openseed.solutions/testing/"
     var raw = ""
@@ -236,7 +250,7 @@ function create_user(username,email,passphrase,steemname,devPub,appPub,docid) {
               + email + '","passphrase":"' + passphrase + '","steemname":"' + steemname+'"}')
 }
 
-function send_profile(account,data1,data2,data3,data4,data5,devPub,appPub,docid) {
+function send_profile(account,data1,data2,data3,data4,data5,docid) {
     var http = new XMLHttpRequest()
     var url = "https://api.openseed.solutions/testing/"
     var raw = ""
@@ -270,7 +284,7 @@ function send_profile(account,data1,data2,data3,data4,data5,devPub,appPub,docid)
     }
 }
 
-function check_Steem(account,devPub,appPub,docid) {
+function check_Steem(account,docid) {
     var http = new XMLHttpRequest()
     var url = "https://api.openseed.solutions/testing/"
     var raw = ""
@@ -301,7 +315,7 @@ function check_Steem(account,devPub,appPub,docid) {
     http.send('msg={"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"steemcheck","steemname":"' + account+'"}')
 }
 
-function profile(account,devPub,appPub,docid) {
+function profile(account,docid) {
     var http = new XMLHttpRequest()
     var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"user_profile","username":"' + account+'"}'
     var url = "https://api.openseed.solutions/testing/"
@@ -385,7 +399,7 @@ function profile(account,devPub,appPub,docid) {
     http.send('msg={"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"user_profile","username":"' + account+'"}')
 }
 
-function user_profile(account,devPub,appPub,docid) {
+function user_profile(account,docid) {
     var http = new XMLHttpRequest()
     var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"user_profile","username":"' + account+'"}'
     var url = "https://api.openseed.solutions/testing/"
@@ -469,7 +483,7 @@ function user_profile(account,devPub,appPub,docid) {
     http.send('msg={"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"user_profile","username":"' + account+'"}')
 }
 
-function profile_check(account,devPub,appPub,docid) {
+function profile_check(account,docid) {
     var http = new XMLHttpRequest()
     var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"profile","userid":"' + account+'"}'
     var url = "https://api.openseed.solutions/testing/"
@@ -537,7 +551,7 @@ function profile_check(account,devPub,appPub,docid) {
     http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
 }
 
-function send_request(username,requestname,response,devPub,appPub,docid) {
+function send_request(username,requestname,response,docid) {
     var http = new XMLHttpRequest()
     var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"send_request","username":"' + username + '","request":"'
               + requestname + '","response":"' + response+'"}'
@@ -569,7 +583,7 @@ function send_request(username,requestname,response,devPub,appPub,docid) {
     }
 }
 
-function updates(userid,username,type,last,devPub,appPub,docid) {
+function updates(userid,username,type,last,docid) {
     var http = new XMLHttpRequest()
     var postdata ='{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"' + type + '","username":"' + username
             + '","uid":"' + userid + '","type":"' + type + '","chatroom":"","data":"' + last+'"}'
@@ -642,7 +656,7 @@ function updates(userid,username,type,last,devPub,appPub,docid) {
     gc()
 }
 
-function send_chat(username1,username2,message,devPub,appPub,docid) {
+function send_chat(username1,username2,message,docid) {
     if (ekey == "") {
         ekey = load_key(username1, username2)
     }
@@ -681,7 +695,7 @@ function send_chat(username1,username2,message,devPub,appPub,docid) {
     }
 }
 
-function start_chat(username1,username2,devPub,appPub,docid) {
+function start_chat(username1,username2,docid) {
     var http = new XMLHttpRequest()
     var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"newkey","type":"1","validusers":"'
             + username1 + ',' + username2 + '","register":"' + username1+'"}'
@@ -711,7 +725,7 @@ function start_chat(username1,username2,devPub,appPub,docid) {
     http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
 }
 
-function register_chat(username1,username2,devPub,appPub,docid) {
+function register_chat(username1,username2,docid) {
     var http = new XMLHttpRequest()
     var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"getkey","type":"1","validusers":"'
               + username1 + ',' + username2 + '","register":"' + userid+'"}'
@@ -742,7 +756,7 @@ function register_chat(username1,username2,devPub,appPub,docid) {
     http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
 }
 
-function check_chat(username1,username2,devPub,appPub,docid) {
+function check_chat(username1,username2,docid) {
     var http = new XMLHttpRequest()
     var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"check_chat","username":"'
             + username1 + '","othername":"'+ username2+'"}'
@@ -779,7 +793,7 @@ function check_chat(username1,username2,devPub,appPub,docid) {
     http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
 }
 
-function retrieve_conversations(username,devPub,appPub,docid) {
+function retrieve_conversations(username,docid) {
     var http = new XMLHttpRequest()
     var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"conversations","username":"' + username+'"}'
     var url = "https://api.openseed.solutions/testing/"
@@ -848,7 +862,7 @@ function retrieve_conversations(username,devPub,appPub,docid) {
     http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
 }
 
-function load_key(username1,username2,devPub,appPub,docid) {
+function load_key(username1,username2,docid) {
     var key = ""
     var search1 = "SELECT code FROM chatKeys WHERE username1 LIKE '" + username1
             + "' AND username2 LIKE '" + username2 + "'"
@@ -982,7 +996,7 @@ function simp_decrypt(key, raw_data) {
     return decoded.replace(/:percent:/g, "%").replace(/:ampersand:/g, "&")
 }
 
-function openseed_search(username,devPub,appPub,docid) {
+function openseed_search(username,docid) {
     var http = new XMLHttpRequest()
     var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"search","username":"' + username+'"}'
     var url = "https://api.openseed.solutions/testing/"
@@ -1024,7 +1038,7 @@ function openseed_search(username,devPub,appPub,docid) {
     http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
 }
 
-function get_around(currentcords,devPub,appPub,docid) {
+function get_around(currentcords,docid) {
 
     var http = new XMLHttpRequest()
     var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"gps","cords":"'
