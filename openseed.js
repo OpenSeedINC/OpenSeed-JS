@@ -254,6 +254,7 @@ function get_profile(account) {
                 raw = http.responseText
                 //return raw
 		thereturn = decodeURI(raw).replace(/%2C/g,",").replace(/%3A/g,":").replace(/%40/g,"@");
+		return thereturn
             }
         }
     }
