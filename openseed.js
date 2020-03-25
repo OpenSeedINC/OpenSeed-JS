@@ -264,7 +264,7 @@ function get_profile(account,docid) {
         }
     }
 
-    http.open('POST', url.trim(), true)
+    http.open('POST', url.trim())
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
     //http.send('msg='+simp_crypt(devId,postdata))
     http.send('msg='+postdata)
