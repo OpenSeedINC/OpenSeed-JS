@@ -250,6 +250,7 @@ function get_profile(account,docid) {
     http.onreadystatechange = function () {
         if (http.readyState === 4) {
             raw = http.responseText
+	    thereturn = decodeURI(raw).replace(/%2C/g,",").replace(/%3A/g,":").replace(/%40/g,"@");
             if (http.responseText === 100) {
                 console.log("Incorrect DevID")
             } else if (http.responseText === 101) {
@@ -268,7 +269,7 @@ function get_profile(account,docid) {
     //http.send('msg='+simp_crypt(devId,postdata))
     http.send('msg='+postdata)
 
-   if (thereturn != "") {
+   if (thereturn != loading) {
 	return thereturn
 	}
 }
