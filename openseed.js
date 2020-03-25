@@ -257,7 +257,6 @@ function get_profile(account,docid) {
                 console.log("Incorrect AppID")
             } else {
                 raw = http.responseText
-                //return raw
 		thereturn = decodeURI(raw).replace(/%2C/g,",").replace(/%3A/g,":").replace(/%40/g,"@");
 		document.getElementById(docid).innerHTML = thereturn
             }
@@ -268,10 +267,7 @@ function get_profile(account,docid) {
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
     //http.send('msg='+simp_crypt(devId,postdata))
     http.send('msg='+postdata)
-
-   if (thereturn != "loading") {
-	return thereturn
-	}
+return thereturn
 }
 
 function get_steem_profile(account,docid) {
