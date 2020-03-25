@@ -184,7 +184,7 @@ function get_profile(account,devPub,appPub,docid) {
             } else {
                 raw = http.responseText
                 //return raw
-		document.getElementById(docid).innerHTML = decodeURI(raw).replace(/%2C/g,",").replace(/%3A/g,":");
+		document.getElementById(docid).innerHTML = decodeURI(raw).replace(/%2C/g,",").replace(/%3A/g,":").replace(/%40/g,"@");
             }
         }
     }
