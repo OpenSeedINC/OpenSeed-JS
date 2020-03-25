@@ -89,7 +89,7 @@ function heartbeat() {
     http.send('msg={"devPub":"' + devPub + '","appPub":"' + appPub + '","userid":"' + userid+'"}')
 }
 
-function get_history(account,apprange,count) {
+function get_history(account,apprange,count,docid) {
 
         var http = new XMLHttpRequest()
         var postdata = '{"devPub":"'+devPub+'","appPub":"'+ appPub +'","act":"get_history","account":"'+account+'","apprange":"'+apprange+'","count":"'+count+'"}'
@@ -105,6 +105,7 @@ function get_history(account,apprange,count) {
                 } else {
                     raw = http.responseText
                     //var data = JSON.parse(raw.trim())["connections"]
+		    document.getElementById(docid).innerHTML = raw
                     return raw
                 }
             }
@@ -117,7 +118,7 @@ function get_history(account,apprange,count) {
 
 }
 
-function get_tracks(start,count) {
+function get_tracks(start,count,docid) {
 
 	var http = new XMLHttpRequest()
         var postdata = '{"devPub":"'+devPub+'","appPub":"'+ appPub +'","act":"getTracks","start":"'+start+'","count":"'+count+'"}'
@@ -133,6 +134,7 @@ function get_tracks(start,count) {
                 } else {
                     raw = http.responseText
                     //var data = JSON.parse(raw.trim())["connections"]
+		   document.getElementById(docid).innerHTML = raw
                    return raw
                 }
             }
@@ -144,7 +146,7 @@ function get_tracks(start,count) {
 
 }
 
-function openseed_search(username) {
+function openseed_search(username,docid) {
     var http = new XMLHttpRequest()
     var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"search","username":"'+username+'"}'
     var url = "https://api.openseed.solutions/testing/"
@@ -158,6 +160,7 @@ function openseed_search(username) {
                 console.log("Incorrect AppID")
             } else {
                 raw = http.responseText
+		document.getElementById(docid).innerHTML = raw
          	return raw
             }
         }
@@ -210,7 +213,7 @@ function checkcreds(field,info,docid) {
     http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
 }
 
-function get_openseed_connections(account) {
+function get_openseed_connections(account,docid) {
 
         var http = new XMLHttpRequest()
         var postdata = '{"devPub":"'+devPub+'","appPub":"'+ appPub +'","act":"openseed_connections","username":"'+account+'"}'
@@ -226,7 +229,8 @@ function get_openseed_connections(account) {
                 } else {
                     raw = http.responseText
                     //var data = JSON.parse(raw.trim())["connections"]
-                    return raw
+		    document.getElementById(docid).innerHTML = raw
+                    //return raw
                 }
             }
         }
@@ -236,13 +240,13 @@ function get_openseed_connections(account) {
         http.send('msg='+postdata)
 }
 
-function get_profile(account) {
+function get_profile(account,docid) {
 
     var http = new XMLHttpRequest()
     var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"user_profile","username":"' + account+'"}'
     var url = "https://api.openseed.solutions/testing/"
     var raw
-    var thereturn = ""
+    var thereturn = "loading"
     http.onreadystatechange = function () {
         if (http.readyState === 4) {
             raw = http.responseText
@@ -254,7 +258,7 @@ function get_profile(account) {
                 raw = http.responseText
                 //return raw
 		thereturn = decodeURI(raw).replace(/%2C/g,",").replace(/%3A/g,":").replace(/%40/g,"@");
-		return thereturn
+		document.getElementById(docid).innerHTML = thereturn
             }
         }
     }
@@ -264,13 +268,9 @@ function get_profile(account) {
     //http.send('msg='+simp_crypt(devId,postdata))
     http.send('msg='+postdata)
 
-    //if (raw) {
-        //return raw
-	//return decodeURI(raw).replace(/%2C/g,",").replace(/%3A/g,":").replace(/%40/g,"@");
-    //} else {
-      //  return '{"profile":"none"}'
-    //}
-return thereturn
+   if (thereturn != "") {
+	return thereturn
+	}
 }
 
 function get_steem_profile(account,docid) {
