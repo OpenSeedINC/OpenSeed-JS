@@ -247,7 +247,7 @@ function get_profile(account,docid) {
     var url = "https://api.openseed.solutions/testing/"
     var raw
     var thereturn = "loading"
-    //http.onreadystatechange = function () {
+    http.onreadystatechange = function () {
         if (http.readyState === 4) {
             raw = http.responseText
 	    thereturn = decodeURI(raw).replace(/%2C/g,",").replace(/%3A/g,":").replace(/%40/g,"@");
@@ -262,9 +262,9 @@ function get_profile(account,docid) {
 		document.getElementById(docid).innerHTML = thereturn
             }
         }
-    //}
+    }
 
-    http.open('POST', url.trim())
+    http.open('POST', url.trim(), false)
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
     //http.send('msg='+simp_crypt(devId,postdata))
     http.send('msg='+postdata)
