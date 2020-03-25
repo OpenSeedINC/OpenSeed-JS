@@ -92,7 +92,7 @@ function heartbeat() {
 function get_history(account,apprange,count,docid) {
 
         var http = new XMLHttpRequest()
-        var postdata = '{"devPub":"'+devPub+'","appPub":"'+ appPub +'","act":"get_history","account":"'+account+'","apprange:"'+apprange+'","count":"'+count+'"}'
+        var postdata = '{"devPub":"'+devPub+'","appPub":"'+ appPub +'","act":"get_history","account":"'+account+'","apprange":"'+apprange+'","count":"'+count+'"}'
         var url = "https://api.openseed.solutions/testing/"
         var raw
         http.onreadystatechange = function () {
