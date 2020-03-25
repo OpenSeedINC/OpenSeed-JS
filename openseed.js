@@ -89,6 +89,34 @@ function heartbeat() {
     http.send('msg={"devPub":"' + devPub + '","appPub":"' + appPub + '","userid":"' + userid+'"}')
 }
 
+function get_history(account,apprange,count,docid) {
+
+        var http = new XMLHttpRequest()
+        var postdata = '{"devPub":"'+devPub+'","appPub":"'+ appPub +'","act":"get_history","account":"'+account+'","apprange:"'+apprange+'","count":"'+count+'"}'
+        var url = "https://api.openseed.solutions/testing/"
+        var raw
+        http.onreadystatechange = function () {
+            if (http.readyState === 4) {
+                //console.log(http.responseText)
+                if (http.responseText === 100) {
+                    console.log("Incorrect DevID")
+                } else if (http.responseText === 101) {
+                    console.log("Incorrect AppID")
+                } else {
+                    raw = http.responseText
+                    //var data = JSON.parse(raw.trim())["connections"]
+                    document.getElementById(docid).innerHTML = raw
+                }
+            }
+        }
+        http.open('POST', url.trim(), true)
+        http.setRequestHeader("Content-type","application/x-www-form-urlencoded")
+        //http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
+        http.send('msg='+postdata)
+
+
+}
+
 function checkcreds(field,info,docid) {
 
     var http = new XMLHttpRequest()
@@ -149,8 +177,7 @@ function get_openseed_connections(account,docid) {
             }
         }
         http.open('POST', url.trim(), true)
-        http.setRequestHeader("Content-type",
-                              "application/x-www-form-urlencoded")
+        http.setRequestHeader("Content-type","application/x-www-form-urlencoded")
         //http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
         http.send('msg='+postdata)
 }
