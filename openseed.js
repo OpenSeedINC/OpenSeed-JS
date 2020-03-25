@@ -258,7 +258,7 @@ function get_profile(account,docid) {
             } else {
                 raw = http.responseText
 		thereturn = decodeURI(raw).replace(/%2C/g,",").replace(/%3A/g,":").replace(/%40/g,"@");
-		document.getElementById(docid).innerHTML = thereturn
+		//document.getElementById(docid).innerHTML = thereturn
             }
         }
     }
