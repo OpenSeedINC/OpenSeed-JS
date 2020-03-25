@@ -196,7 +196,7 @@ function get_profile(account,devPub,appPub,docid) {
 
     if (raw) {
         //return raw
-	document.getElementById(docid).innerHTML = decodeURI(raw).replace(/%2C/g,",").replace(/%3A/g,":");
+	document.getElementById(docid).innerHTML = decodeURI(raw).replace(/%2C/g,",").replace(/%3A/g,":").replace(/%40/g,"@");
     } else {
         document.getElementById(docid).innerHTML = '{"profile":"none"}'
     }
