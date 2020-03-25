@@ -242,6 +242,7 @@ function get_profile(account) {
     var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"user_profile","username":"' + account+'"}'
     var url = "https://api.openseed.solutions/testing/"
     var raw
+    var thereturn = ""
     http.onreadystatechange = function () {
         if (http.readyState === 4) {
             raw = http.responseText
@@ -252,7 +253,7 @@ function get_profile(account) {
             } else {
                 raw = http.responseText
                 //return raw
-		return decodeURI(raw).replace(/%2C/g,",").replace(/%3A/g,":").replace(/%40/g,"@");
+		thereturn = decodeURI(raw).replace(/%2C/g,",").replace(/%3A/g,":").replace(/%40/g,"@");
             }
         }
     }
@@ -268,6 +269,7 @@ function get_profile(account) {
     //} else {
       //  return '{"profile":"none"}'
     //}
+return thereturn
 }
 
 function get_steem_profile(account,docid) {
