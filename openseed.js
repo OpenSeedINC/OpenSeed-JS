@@ -89,7 +89,7 @@ function heartbeat() {
     http.send('msg={"devPub":"' + devPub + '","appPub":"' + appPub + '","userid":"' + userid+'"}')
 }
 
-function get_history(account,apprange,count,docid) {
+function get_history(account,apprange,count) {
 
         var http = new XMLHttpRequest()
         var postdata = '{"devPub":"'+devPub+'","appPub":"'+ appPub +'","act":"get_history","account":"'+account+'","apprange":"'+apprange+'","count":"'+count+'"}'
@@ -117,7 +117,7 @@ function get_history(account,apprange,count,docid) {
 
 }
 
-function get_tracks(start,count,docid) {
+function get_tracks(start,count) {
 
 	var http = new XMLHttpRequest()
         var postdata = '{"devPub":"'+devPub+'","appPub":"'+ appPub +'","act":"getTracks","start":"'+start+'","count":"'+count+'"}'
@@ -144,7 +144,7 @@ function get_tracks(start,count,docid) {
 
 }
 
-function openseed_search(username,docid) {
+function openseed_search(username) {
     var http = new XMLHttpRequest()
     var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"search","username":"'+username+'"}'
     var url = "https://api.openseed.solutions/testing/"
@@ -210,7 +210,7 @@ function checkcreds(field,info,docid) {
     http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
 }
 
-function get_openseed_connections(account,docid) {
+function get_openseed_connections(account) {
 
         var http = new XMLHttpRequest()
         var postdata = '{"devPub":"'+devPub+'","appPub":"'+ appPub +'","act":"openseed_connections","username":"'+account+'"}'
@@ -226,7 +226,7 @@ function get_openseed_connections(account,docid) {
                 } else {
                     raw = http.responseText
                     //var data = JSON.parse(raw.trim())["connections"]
-                    document.getElementById(docid).innerHTML = raw
+                    return raw
                 }
             }
         }
@@ -236,7 +236,7 @@ function get_openseed_connections(account,docid) {
         http.send('msg='+postdata)
 }
 
-function get_profile(account,docid) {
+function get_profile(account) {
 
     var http = new XMLHttpRequest()
     var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"user_profile","username":"' + account+'"}'
