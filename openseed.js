@@ -262,12 +262,12 @@ function get_profile(account,docid) {
     //http.send('msg='+simp_crypt(devId,postdata))
     http.send('msg='+postdata)
 
-    if (raw) {
+    //if (raw) {
         //return raw
-	document.getElementById(docid).innerHTML = decodeURI(raw).replace(/%2C/g,",").replace(/%3A/g,":").replace(/%40/g,"@");
-    } else {
-        document.getElementById(docid).innerHTML = '{"profile":"none"}'
-    }
+	//return decodeURI(raw).replace(/%2C/g,",").replace(/%3A/g,":").replace(/%40/g,"@");
+    //} else {
+      //  return '{"profile":"none"}'
+    //}
 }
 
 function get_steem_profile(account,docid) {
