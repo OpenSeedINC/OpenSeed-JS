@@ -117,7 +117,7 @@ function get_history(account,apprange,count,docid) {
 
 }
 
-function get_all_music(count) {
+function get_all_music(count,docid) {
 
 	var http = new XMLHttpRequest()
         var postdata = '{"devPub":"'+devPub+'","appPub":"'+ appPub +'","act":"getAllTracks","count":"'+count+'"}'
