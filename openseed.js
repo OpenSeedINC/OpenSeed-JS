@@ -105,7 +105,7 @@ function get_history(account,apprange,count,docid) {
                 } else {
                     raw = http.responseText
                     //var data = JSON.parse(raw.trim())["connections"]
-                    document.getElementById(docid).innerHTML = raw
+                    return raw
                 }
             }
         }
@@ -133,7 +133,7 @@ function get_tracks(start,count,docid) {
                 } else {
                     raw = http.responseText
                     //var data = JSON.parse(raw.trim())["connections"]
-                    document.getElementById(docid).innerHTML = raw
+                   return raw
                 }
             }
         }
@@ -158,7 +158,7 @@ function openseed_search(username,docid) {
                 console.log("Incorrect AppID")
             } else {
                 raw = http.responseText
-         	document.getElementById(docid).innerHTML = raw
+         	return raw
             }
         }
     }
@@ -252,7 +252,7 @@ function get_profile(account,docid) {
             } else {
                 raw = http.responseText
                 //return raw
-		document.getElementById(docid).innerHTML = decodeURI(raw).replace(/%2C/g,",").replace(/%3A/g,":").replace(/%40/g,"@");
+		return decodeURI(raw).replace(/%2C/g,",").replace(/%3A/g,":").replace(/%40/g,"@");
             }
         }
     }
