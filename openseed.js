@@ -130,12 +130,10 @@ function checkcreds(field,info,docid) {
 
 function get_openseed_connections(account,docid) {
 
-    if (connections.length == 0) {
         var http = new XMLHttpRequest()
         var postdata = '{"devPub":"'+devPub+'","appPub":"'+ appPub +'","act":"openseed_connections","username":"'+account+'"}'
         var url = "https://api.openseed.solutions/testing/"
         var raw
-        var num = 0
         http.onreadystatechange = function () {
             if (http.readyState === 4) {
                 //console.log(http.responseText)
@@ -150,14 +148,11 @@ function get_openseed_connections(account,docid) {
                 }
             }
         }
-
-
         http.open('POST', url.trim(), true)
         http.setRequestHeader("Content-type",
                               "application/x-www-form-urlencoded")
-        http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
-        //http.send('msg='+postdata)
-    }
+        //http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
+        http.send('msg='+postdata)
 }
 
 function get_profile(account,docid) {
