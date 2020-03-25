@@ -1052,7 +1052,6 @@ function openseed_search(username,docid) {
     var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"search","username":"' + username+'"}'
     var url = "https://api.openseed.solutions/testing/"
     var raw = ""
-    searched.clear()
     http.onreadystatechange = function () {
         if (http.readyState === 4) {
             raw = http.responseText
@@ -1062,24 +1061,7 @@ function openseed_search(username,docid) {
                 console.log("Incorrect AppID")
             } else {
                 raw = http.responseText
-                var f = JSON.parse(raw)["results"]
-                for (var r in f) {
-
-                    var found = r
-                    var theimg = ""
-                    if (found["steem"]["profile"] !== undefined) {
-                        theimg = found["steem"]["profile"]["profile_image"]
-                    }
-                    searched.append({
-                                        "accountname": found["account"],
-                                        "name": found["profile"]["name"],
-                                        "img": theimg,
-                                        "about": found["profile"]["profession"],
-                                        "company": found["profile"]["company"],
-                                        "index": r,
-                                        "openseed": true
-                                    })
-                }
+         	document.getElementById(docid).innerHTML
             }
         }
     }
