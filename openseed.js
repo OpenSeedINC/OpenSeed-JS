@@ -1068,7 +1068,8 @@ function openseed_search(username,docid) {
 
     http.open('POST', url.trim(), true)
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-    http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
+    //http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
+    http.send('msg='+postdata)
 }
 
 function get_around(currentcords,docid) {
