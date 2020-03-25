@@ -144,6 +144,31 @@ function get_tracks(start,count,docid) {
 
 }
 
+function openseed_search(username,docid) {
+    var http = new XMLHttpRequest()
+    var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"search","username":"'+username+'"}'
+    var url = "https://api.openseed.solutions/testing/"
+    var raw = ""
+    http.onreadystatechange = function () {
+        if (http.readyState === 4) {
+            raw = http.responseText
+            if (http.responseText === 100) {
+                console.log("Incorrect DevID")
+            } else if (http.responseText === 101) {
+                console.log("Incorrect AppID")
+            } else {
+                raw = http.responseText
+         	document.getElementById(docid).innerHTML = raw
+            }
+        }
+    }
+
+    http.open('POST', url.trim(), true)
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+    //http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
+    http.send('msg='+postdata)
+}
+
 
 
 function checkcreds(field,info,docid) {
@@ -1047,30 +1072,7 @@ function simp_decrypt(key, raw_data) {
     return decoded.replace(/:percent:/g, "%").replace(/:ampersand:/g, "&")
 }
 
-function openseed_search(username,docid) {
-    var http = new XMLHttpRequest()
-    var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"search","username":"' + username+'"}'
-    var url = "https://api.openseed.solutions/testing/"
-    var raw = ""
-    http.onreadystatechange = function () {
-        if (http.readyState === 4) {
-            raw = http.responseText
-            if (http.responseText === 100) {
-                console.log("Incorrect DevID")
-            } else if (http.responseText === 101) {
-                console.log("Incorrect AppID")
-            } else {
-                raw = http.responseText
-         	document.getElementById(docid).innerHTML
-            }
-        }
-    }
 
-    http.open('POST', url.trim(), true)
-    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-    //http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
-    http.send('msg='+postdata)
-}
 
 function get_around(currentcords,docid) {
 
