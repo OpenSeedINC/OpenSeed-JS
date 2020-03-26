@@ -1153,6 +1153,7 @@ var chatroom = '<div id="chat"> \
 </header> --> \
 <script src="openseed.js"> \
 </script> \
+<div id="chat-log" style="min-width:500px;min-height:200px;width:100%"><p>Chatlog</p> \
 <script> \
 	set_id("0b2ebd37","e9ab7141"); \
 	setInterval(check_chat(account,room),2000) \
@@ -1160,8 +1161,7 @@ var chatroom = '<div id="chat"> \
 		console.log("checking chat for "+room) \
 	} \
 </script> \
- \
-<div id="chat-log" style="min-width:500px;min-height:200px;width:100%"><p>Chatlog</p> </div> \
+</div> \
 <input type="text" style="min-width:500px;width:auto" id="chat-message" name="message"> \
 \
 </div>'
