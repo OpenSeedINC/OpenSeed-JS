@@ -1131,17 +1131,18 @@ function get_around(currentcords,docid) {
 //####### Widgets #######
 
 function widgets(name,opts = {}) {
-	
+	var payload = ""
 	switch(name) {
 
 		case "chat":
-			load_chat(opts["account"],opts["room"])
+			payload = load_chat(opts["account"],opts["room"])
 			break
 		case "player":
-			load_player(opts["account"],opts["playlist"])
+			payload = load_player(opts["account"],opts["playlist"])
+			break
 		
 	}
-
+return payload
 }
 
 function load_chat(account,room) {
