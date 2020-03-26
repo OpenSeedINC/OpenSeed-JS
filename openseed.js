@@ -125,7 +125,7 @@ return thereturn
 function get_openseed_connections(account,docid) {
 
         var http = new XMLHttpRequest()
-        var postdata = '{"devPub":"'+devPub+'","appPub":"'+ appPub +'","act":"openseed_connections","username":"'+account+'"}'
+        var postdata = '{"devPub":"'+devPub+'","appPub":"'+ appPub +'","act":"openseed_connections","account":"'+account+'"}'
         var url = "https://api.openseed.solutions/testing/"
         var raw = ""
         http.onreadystatechange = function () {
@@ -1153,7 +1153,7 @@ var chatroom = '<div id="chat"> \
 </header> --> \
 <script src="openseed.js"> \
 </script> \
-<div onload ="setInterval(check_chat(account,room),2000)" id="chat-log" style="min-width:500px;min-height:200px;width:100%"><p>Chatlog</p> \
+<div onload ="window.setInterval(check_chat(account,room),2000)" id="chat-log" style="min-width:500px;min-height:200px;width:100%"><p>Chatlog</p> \
 <script> \
 	set_id("0b2ebd37","e9ab7141"); \
 	function check_chat(account,room) { \
@@ -1164,7 +1164,6 @@ var chatroom = '<div id="chat"> \
 <input type="text" style="min-width:500px;width:auto" id="chat-message" name="message"> \
 \
 </div>'
-console.log(account,room)
 
 return chatroom
 
