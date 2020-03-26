@@ -1155,6 +1155,10 @@ var chatroom = '<div id="chat"> \
 </script> \
 <script> \
 	set_id("0b2ebd37","e9ab7141"); \
+	setInterval(check_chat(account,room),2000) \
+	function check_chat(account,room) { \
+		console.log("checking chat for "+room) \
+	} \
 </script> \
  \
 <div id="chat-log" style="min-width:500px;min-height:200px;width:100%"><p>Chatlog</p> </div> \
