@@ -89,6 +89,68 @@ function heartbeat() {
     http.send('msg={"devPub":"' + devPub + '","appPub":"' + appPub + '","userid":"' + userid+'"}')
 }
 
+//### Functions testest and working ###
+
+function get_profile(account,docid) {
+
+    var http = new XMLHttpRequest()
+    var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"user_profile","username":"' + account+'"}'
+    var url = "https://api.openseed.solutions/testing/"
+    var raw
+    var thereturn = "loading"
+    http.onreadystatechange = function () {
+        if (http.readyState === 4) {
+            raw = http.responseText
+	    thereturn = decodeURI(raw).replace(/%2C/g,",").replace(/%3A/g,":").replace(/%40/g,"@");
+            if (http.responseText === 100) {
+                console.log("Incorrect DevID")
+            } else if (http.responseText === 101) {
+                console.log("Incorrect AppID")
+            } else {
+                raw = http.responseText
+		thereturn = decodeURI(raw).replace(/%2C/g,",").replace(/%3A/g,":").replace(/%40/g,"@");
+		//document.getElementById(docid).innerHTML = thereturn
+            }
+        }
+    }
+
+    http.open('POST', url.trim(), false)
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+    //http.send('msg='+simp_crypt(devId,postdata))
+    http.send('msg='+postdata)
+
+return thereturn
+}
+
+function get_openseed_connections(account,docid) {
+
+        var http = new XMLHttpRequest()
+        var postdata = '{"devPub":"'+devPub+'","appPub":"'+ appPub +'","act":"openseed_connections","username":"'+account+'"}'
+        var url = "https://api.openseed.solutions/testing/"
+        var raw = ""
+        http.onreadystatechange = function () {
+            if (http.readyState === 4) {
+                //console.log(http.responseText)
+                if (http.responseText === 100) {
+                    console.log("Incorrect DevID")
+                } else if (http.responseText === 101) {
+                    console.log("Incorrect AppID")
+                } else {
+                    raw = http.responseText
+                    //var data = JSON.parse(raw.trim())["connections"]
+		    //document.getElementById(docid).innerHTML = raw
+                    //return raw
+                }
+            }
+        }
+        http.open('POST', url.trim(), false)
+        http.setRequestHeader("Content-type","application/x-www-form-urlencoded")
+        //http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
+        http.send('msg='+postdata)
+
+return raw
+}
+
 function get_history(account,apprange,count,docid) {
 
         var http = new XMLHttpRequest()
@@ -173,6 +235,7 @@ function openseed_search(username,docid) {
 return raw
 }
 
+//###############
 
 
 function checkcreds(field,info,docid) {
@@ -214,65 +277,6 @@ function checkcreds(field,info,docid) {
     http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
 }
 
-function get_openseed_connections(account,docid) {
-
-        var http = new XMLHttpRequest()
-        var postdata = '{"devPub":"'+devPub+'","appPub":"'+ appPub +'","act":"openseed_connections","username":"'+account+'"}'
-        var url = "https://api.openseed.solutions/testing/"
-        var raw = ""
-        http.onreadystatechange = function () {
-            if (http.readyState === 4) {
-                //console.log(http.responseText)
-                if (http.responseText === 100) {
-                    console.log("Incorrect DevID")
-                } else if (http.responseText === 101) {
-                    console.log("Incorrect AppID")
-                } else {
-                    raw = http.responseText
-                    //var data = JSON.parse(raw.trim())["connections"]
-		    //document.getElementById(docid).innerHTML = raw
-                    //return raw
-                }
-            }
-        }
-        http.open('POST', url.trim(), false)
-        http.setRequestHeader("Content-type","application/x-www-form-urlencoded")
-        //http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
-        http.send('msg='+postdata)
-
-return raw
-}
-
-function get_profile(account,docid) {
-
-    var http = new XMLHttpRequest()
-    var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"user_profile","username":"' + account+'"}'
-    var url = "https://api.openseed.solutions/testing/"
-    var raw
-    var thereturn = "loading"
-    http.onreadystatechange = function () {
-        if (http.readyState === 4) {
-            raw = http.responseText
-	    thereturn = decodeURI(raw).replace(/%2C/g,",").replace(/%3A/g,":").replace(/%40/g,"@");
-            if (http.responseText === 100) {
-                console.log("Incorrect DevID")
-            } else if (http.responseText === 101) {
-                console.log("Incorrect AppID")
-            } else {
-                raw = http.responseText
-		thereturn = decodeURI(raw).replace(/%2C/g,",").replace(/%3A/g,":").replace(/%40/g,"@");
-		//document.getElementById(docid).innerHTML = thereturn
-            }
-        }
-    }
-
-    http.open('POST', url.trim(), false)
-    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-    //http.send('msg='+simp_crypt(devId,postdata))
-    http.send('msg='+postdata)
-
-return thereturn
-}
 
 function get_steem_profile(account,docid) {
     var http = new XMLHttpRequest()
@@ -1123,4 +1127,41 @@ function get_around(currentcords,docid) {
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
     http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
 }
+
+//####### Widgets #######
+
+function widgets(name,opts = {}) {
+	
+	switch(name) {
+
+		case "chat":
+			load_chat(opts["account"],opts["room"])
+			break
+		case "player":
+			load_player(opts["account"],opts["playlist"])
+		
+	}
+
+}
+
+function load_chat(account,room) {
+
+var chatroom = '<div id="chat"> \
+<!-- <header> \
+  <h2>OpenSeed </h2> \
+</header> --> \
+<script src="openseed.js"> \
+</script> \
+<script> \
+	set_id("0b2ebd37","e9ab7141"); \
+</script> \
+<p> Chat Window </p> \
+</div>'
+
+
+return chatroom
+
+
+}
+
 
