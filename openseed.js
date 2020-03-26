@@ -879,7 +879,7 @@ function check_chat(username1,username2,docid) {
 
 function retrieve_conversations(username,docid) {
     var http = new XMLHttpRequest()
-    var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"conversations","username":"' + username+'"}'
+    var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"conversations","account":"' + username+'"}'
     var url = "https://api.openseed.solutions/testing/"
     var raw = ""
     http.onreadystatechange = function () {
