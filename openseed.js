@@ -1157,7 +1157,7 @@ var chatroom = '<div id="chat"> \
 	set_id("0b2ebd37","e9ab7141"); \
 </script> \
  \
-<div id="chat-log" style="min-height:200px;width:100%"><p>Chatlog</p> </div> \
+<div id="chat-log" style="min-width:500px;min-height:200px;width:100%"><p>Chatlog</p> </div> \
 <input type="text" id="chat-message" name="message"> \
 \
 </div>'
