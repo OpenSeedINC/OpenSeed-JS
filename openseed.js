@@ -94,7 +94,7 @@ function get_history(account,apprange,count,docid) {
         var http = new XMLHttpRequest()
         var postdata = '{"devPub":"'+devPub+'","appPub":"'+ appPub +'","act":"get_history","account":"'+account+'","apprange":"'+apprange+'","count":"'+count+'"}'
         var url = "https://api.openseed.solutions/testing/"
-        var raw
+        var raw = ""
         http.onreadystatechange = function () {
             if (http.readyState === 4) {
                 //console.log(http.responseText)
@@ -105,17 +105,17 @@ function get_history(account,apprange,count,docid) {
                 } else {
                     raw = http.responseText
                     //var data = JSON.parse(raw.trim())["connections"]
-		    document.getElementById(docid).innerHTML = raw
-                    return raw
+		    //document.getElementById(docid).innerHTML = raw
+                    
                 }
             }
         }
-        http.open('POST', url.trim(), true)
+        http.open('POST', url.trim(), false)
         http.setRequestHeader("Content-type","application/x-www-form-urlencoded")
         //http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
         http.send('msg='+postdata)
 
-
+return raw
 }
 
 function get_tracks(start,count,docid) {
@@ -123,7 +123,7 @@ function get_tracks(start,count,docid) {
 	var http = new XMLHttpRequest()
         var postdata = '{"devPub":"'+devPub+'","appPub":"'+ appPub +'","act":"getTracks","start":"'+start+'","count":"'+count+'"}'
         var url = "https://api.openseed.solutions/testing/"
-        var raw
+        var raw = ""
         http.onreadystatechange = function () {
             if (http.readyState === 4) {
                 //console.log(http.responseText)
@@ -134,16 +134,16 @@ function get_tracks(start,count,docid) {
                 } else {
                     raw = http.responseText
                     //var data = JSON.parse(raw.trim())["connections"]
-		   document.getElementById(docid).innerHTML = raw
-                   return raw
+		   //document.getElementById(docid).innerHTML = raw
+                   
                 }
             }
         }
-        http.open('POST', url.trim(), true)
+        http.open('POST', url.trim(), false)
         http.setRequestHeader("Content-type","application/x-www-form-urlencoded")
         //http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
         http.send('msg='+postdata)
-
+return raw
 }
 
 function openseed_search(username,docid) {
@@ -160,16 +160,17 @@ function openseed_search(username,docid) {
                 console.log("Incorrect AppID")
             } else {
                 raw = http.responseText
-		document.getElementById(docid).innerHTML = raw
-         	return raw
+		//document.getElementById(docid).innerHTML = raw
             }
         }
     }
 
-    http.open('POST', url.trim(), true)
+    http.open('POST', url.trim(), false)
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
     //http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
     http.send('msg='+postdata)
+
+return raw
 }
 
 
@@ -218,7 +219,7 @@ function get_openseed_connections(account,docid) {
         var http = new XMLHttpRequest()
         var postdata = '{"devPub":"'+devPub+'","appPub":"'+ appPub +'","act":"openseed_connections","username":"'+account+'"}'
         var url = "https://api.openseed.solutions/testing/"
-        var raw
+        var raw = ""
         http.onreadystatechange = function () {
             if (http.readyState === 4) {
                 //console.log(http.responseText)
@@ -229,15 +230,17 @@ function get_openseed_connections(account,docid) {
                 } else {
                     raw = http.responseText
                     //var data = JSON.parse(raw.trim())["connections"]
-		    document.getElementById(docid).innerHTML = raw
+		    //document.getElementById(docid).innerHTML = raw
                     //return raw
                 }
             }
         }
-        http.open('POST', url.trim(), true)
+        http.open('POST', url.trim(), false)
         http.setRequestHeader("Content-type","application/x-www-form-urlencoded")
         //http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
         http.send('msg='+postdata)
+
+return raw
 }
 
 function get_profile(account,docid) {
@@ -267,6 +270,7 @@ function get_profile(account,docid) {
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
     //http.send('msg='+simp_crypt(devId,postdata))
     http.send('msg='+postdata)
+
 return thereturn
 }
 
