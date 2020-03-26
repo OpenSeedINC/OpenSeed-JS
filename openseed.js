@@ -1153,10 +1153,9 @@ var chatroom = '<div id="chat"> \
 </header> --> \
 <script src="openseed.js"> \
 </script> \
-<div id="chat-log" style="min-width:500px;min-height:200px;width:100%"><p>Chatlog</p> \
+<div onload ="setInterval(check_chat(account,room),2000)" id="chat-log" style="min-width:500px;min-height:200px;width:100%"><p>Chatlog</p> \
 <script> \
 	set_id("0b2ebd37","e9ab7141"); \
-	setInterval(check_chat(account,room),2000) \
 	function check_chat(account,room) { \
 		console.log("checking chat for "+room) \
 	} \
