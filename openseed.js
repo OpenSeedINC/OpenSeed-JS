@@ -94,7 +94,7 @@ function heartbeat() {
 function get_profile(account,docid) {
 
     var http = new XMLHttpRequest()
-    var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"user_profile","username":"' + account+'"}'
+    var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"get_profile","account":"' + account+'"}'
     var url = "https://api.openseed.solutions/testing/"
     var raw
     var thereturn = "loading"
