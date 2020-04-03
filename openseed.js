@@ -880,7 +880,7 @@ function check_chat(username1,username2,docid) {
 function get_chat_history(token,room,count,last) {
 
     var http = new XMLHttpRequest()
-    var postdata = '{"devPub":"'+devPub+'","appPub":"'+appPub+'","act":"get_chat_history","account":"'+token+'","room":"'+room+'""count":"'+count+'","last":"'+last+'"}'
+    var postdata = '{"devPub":"'+devPub+'","appPub":"'+appPub+'","act":"get_chat_history","token":"'+token+'","room":"'+room+'""count":"'+count+'","last":"'+last+'"}'
     var url = "https://api.openseed.solutions/testing/"
     var raw = ""
     http.onreadystatechange = function () {
