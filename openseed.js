@@ -877,6 +877,33 @@ function check_chat(username1,username2,docid) {
     http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
 }
 
+function get_chat_history(token,room,count,last) {
+
+    var http = new XMLHttpRequest()
+    var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"get_chat_history","account":"'+ token + '","count":"'+count+'","last":"'+last+'"}'
+    var url = "https://api.openseed.solutions/testing/"
+    var raw = ""
+    http.onreadystatechange = function () {
+        if (http.readyState === 4) {
+            raw = http.responseText
+            if (http.responseText === 100) {
+                console.log("Incorrect DevID")
+            } else if (http.responseText === 101) {
+                console.log("Incorrect AppID")
+            } else {
+                raw = http.responseText
+            }
+        }
+    }
+
+    http.open('POST', url.trim(), false)
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+    //http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
+    http.send('msg='+postdata)
+
+return raw
+}
+
 function retrieve_conversations(username,docid) {
     var http = new XMLHttpRequest()
     var postdata = '{"devPub":"' + devPub + '","appPub":"' + appPub + '","act":"conversations","account":"' + username+'"}'
@@ -1166,7 +1193,6 @@ var chatroom = '<div id="chat"> \
 </div>'
 
 return chatroom
-
 
 }
 
