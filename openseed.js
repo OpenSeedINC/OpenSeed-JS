@@ -877,7 +877,7 @@ function check_chat(username1,username2,docid) {
     http.send('pub='+devPub+'&msg='+simp_crypt(devId,postdata))
 }
 
-function get_chat_history(token,room,count,last) {
+function get_chat_history(token,room,count,last,output) {
 
     var http = new XMLHttpRequest()
     var postdata = '{"devPub":"'+devPub+'","appPub":"'+appPub+'","act":"get_chat_history","token":"'+token+'","room":"'+room+'""count":"'+count+'","last":"'+last+'"}'
